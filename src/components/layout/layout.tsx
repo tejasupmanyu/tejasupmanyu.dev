@@ -9,6 +9,7 @@ import {
 } from "./styles"
 import { Header, RootHeader } from "../header/header"
 import Toggle from "../toggle/toggle"
+import { Footer } from "../footer"
 
 const moon = require("../../assets/moon.png")
 const sun = require("../../assets/sun.png")
@@ -68,6 +69,7 @@ const Layout: React.FC<ILayoutProps> = ({
         </div>
       </header>
       <main>{children}</main>
+      <Footer />
     </div>
   )
 }

@@ -18,6 +18,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
             title
             description
             author
+            ogImageUrl
           }
         }
       }
@@ -48,7 +49,11 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `blog`,
+        },
+        {
+          property: `og:image`,
+          content: site.siteMetadata.ogImageUrl,
         },
         {
           name: `twitter:card`,
@@ -67,7 +72,12 @@ const SEO = ({ description, lang, meta, title }: Props) => {
           content: metaDescription,
         },
       ].concat(meta || [])}
-    />
+    >
+      <script
+        src="https://kit.fontawesome.com/d4b0100355.js"
+        crossorigin="anonymous"
+      ></script>
+    </Helmet>
   )
 }
 

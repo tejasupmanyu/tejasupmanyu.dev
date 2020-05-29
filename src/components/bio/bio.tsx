@@ -39,7 +39,7 @@ const Bio: React.FC = () => {
       />
       <p>
         Personal blog by{"  "}
-        <a href={`https://twitter.com/${social.twitter}`}>
+        <a href={social.twitter}>
           <strong>{author}</strong>
         </a>
         , mobile and web developer from Bengaluru, India and a UI/UX enthusiast.

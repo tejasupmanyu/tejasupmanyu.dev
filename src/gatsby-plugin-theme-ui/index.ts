@@ -6,7 +6,8 @@ export default {
     secondary: "#90b4ce",
     tertiary: "#ef4565",
     text: "#5f6c7b",
-    highlight: "#3da9fc",
+    highlight: "#1890ff",
+    link: "#007ACC",
     modes: {
       dark: {
         background: "#0f0e17",
@@ -15,12 +16,14 @@ export default {
         secondary: "#f25f4c",
         tertiary: "#e53170",
         highlight: "#f25f4c",
+        link: "#FFF",
       },
     },
   },
   fonts: {
-    body: "system-ui, sans-serif",
-    heading: "system-ui, sans-serif",
+    body:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+    heading: "Monteserrat, sans-serif",
     monospace: "Menlo, monospace",
   },
   fontWeights: {
@@ -32,6 +35,8 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
+  radii: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  breakpoints: ["992px"],
 }

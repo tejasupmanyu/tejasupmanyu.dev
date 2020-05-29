@@ -4,6 +4,8 @@ export const postHeaderStyles = {
   marginTop: rhythm(1),
   marginBottom: 0,
   color: "primary",
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
 }
 
 export const postDateStyles = {

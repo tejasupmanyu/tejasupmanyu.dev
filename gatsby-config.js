@@ -3,9 +3,21 @@ module.exports = {
     title: `Composè`,
     author: `Tejas Upmanyu`,
     description: `Tejas Upmanyu's Blog`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://tejasupmanyu.dev`,
+    blogUrl: `https://blog.tejasupmanyu.dev`,
+    location: "Bengaluru, India",
+    ogImageUrl: "https://ibb.co/SX43P64",
+    work: {
+      designation: "Software Engineer",
+      orgUrl: "https://hashedin.com/",
+      orgName: "HashedIn",
+    },
     social: {
-      twitter: `tejasupmanyu`,
+      twitter: "https://twitter.com/tejasupmanyu",
+      linkedin: "https://www.linkedin.com/in/tejasupmanyu/",
+      instagram: "https://www.instagram.com/tejasupmanyu/",
+      github: "https://github.com/tejasupmanyu",
+      medium: "https://medium.com/@tejasupmanyu",
     },
   },
   plugins: [

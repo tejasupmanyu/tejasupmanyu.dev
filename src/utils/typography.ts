@@ -1,28 +1,32 @@
 import Typography from "typography"
 import Wordpress2016 from "typography-theme-wordpress-2016"
 
-Wordpress2016.googleFonts = [
-  {
-    name: "Roboto",
-    styles: ["700"],
-  },
-  {
-    name: "Merriweather",
-    styles: ["400", "400i", "700", "700i", "900", "900i"],
-  },
-]
-
-Wordpress2016.headerFontFamily = ["Roboto", "Georgia", "serif"]
-
 Wordpress2016.overrideThemeStyles = () => {
   return {
     "a.gatsby-resp-image-link": {
       boxShadow: `none`,
     },
+    a: {
+      boxShadow: `none`,
+    },
+    "a:hover": {
+      cursor: "pointer",
+      color: "#094067",
+    },
   }
 }
-
-// delete Wordpress2016.googleFonts
+Wordpress2016.bodyFontFamily = ["Helvetica Neue", "helvetica"]
+Wordpress2016.headerFontFamily = [
+  "-apple-system",
+  "BlinkMacSystemFont",
+  "Segoe UI",
+  "Roboto",
+  "Oxygen",
+  "Ubuntu",
+  "Cantarell",
+  "Helvetica Neue",
+  "sans-serif",
+]
 
 const typography = new Typography(Wordpress2016)
 

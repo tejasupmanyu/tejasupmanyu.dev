@@ -1,84 +1,98 @@
 /** @jsx jsx */
-import { jsx, Flex } from "theme-ui"
-import { Link, graphql } from "gatsby"
-import Bio from "../components/bio/bio"
-import Layout from "../components/layout/layout"
+import { jsx } from "theme-ui"
+import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import Image from "gatsby-image"
 import SEO from "../components/seo"
-import { postHeaderStyles, postHeaderTextStyles } from "../styles/styles"
+import {
+  navBarStyles,
+  profileImageStyles,
+  profileStyles,
+  introductionStyles,
+} from "../styles"
+import { Footer } from "../components/footer"
 
-interface Props {
-  data: {
-    allMarkdownRemark: any
-    site: {
-      siteMetadata: {
-        title: string
+const Landing: React.FC = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+        childImageSharp {
+          fluid(maxWidth: 250, maxHeight: 250) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          author
+          blogUrl
+          location
+          work {
+            designation
+            orgUrl
+            orgName
+          }
+          social {
+            twitter
+            linkedin
+          }
+        }
       }
     }
-  }
-}
+  `)
+  const {
+    author,
+    social: { twitter, linkedin },
+    blogUrl,
+    work: { orgName, designation, orgUrl },
+    location,
+  } = data.site.siteMetadata
 
-const BlogIndex = ({ data }: Props) => {
-  const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
   if (typeof window !== `undefined`) {
     return (
-      <Layout location={window.location} title={siteTitle}>
-        <SEO title="All posts" />
-        <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3 sx={postHeaderStyles}>
-                <Link sx={postHeaderTextStyles} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <Flex sx={{ marginBottom: 2 }}>
-                <small>{node.frontmatter.date} | </small>
-                <small sx={{ marginLeft: 1 }}>
-                  {node.timeToRead} minute read
-                </small>
-              </Flex>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </div>
-          )
-        })}
-      </Layout>
+      <React.Fragment>
+        <SEO title={`${author}`} />
+        <nav sx={navBarStyles}>
+          <a href={twitter} target="_blank">
+            Twitter
+          </a>
+          <a href={linkedin} target="_blank">
+            LinkedIn
+          </a>
+          <a href={`${blogUrl}`} className="blog-link">
+            Blog
+          </a>
+        </nav>
+        <section className="profile" sx={profileStyles}>
+          <Image
+            fixed={data.avatar.childImageSharp.fluid}
+            alt={author}
+            sx={profileImageStyles}
+          />
+          <div className="bio">
+            <h1 className="author-name">{`${author}`}</h1>
+            <h2 className="info">{`${designation} In ${location}`} 🇮🇳</h2>
+          </div>
+        </section>
+        <section className="introduction" sx={introductionStyles}>
+          <p>
+            👋🏼 Hello there! My name is Tejas and I am a software engineer at{" "}
+            <a href={orgUrl} target="_blank">
+              {orgName}
+            </a>
+            . I am a fan of all things Javascript and in a never ending love
+            with UI. I also write about my experiments, opinions and learnings
+            around Javascript and the web on my <a href={"/blog"}>blog</a>.{" "}
+            <br />I am a cricket 🏏 fanatic, a tennis 🎾 rookie and a design
+            enthusiast.
+          </p>
+        </section>
+        <Footer />
+      </React.Fragment>
     )
   } else {
     return null
   }
 }
 
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          timeToRead
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`
+export default Landing
