@@ -4,7 +4,7 @@ module.exports = {
     author: `Tejas Upmanyu`,
     description: `Tejas Upmanyu's Blog`,
     siteUrl: `https://tejasupmanyu.dev`,
-    blogUrl: `https://blog.tejasupmanyu.dev`,
+    blogUrl: `https://blog.tejasupmanyu.dev/blog`,
     location: "Bengaluru, India",
     ogImageUrl: "https://ibb.co/SX43P64",
     work: {
