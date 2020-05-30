@@ -88,7 +88,7 @@ export const introductionStyles = {
 
   "@media screen and (min-width: 992px)": {
     width: "80%",
-    py: 4,
+    py: 3,
     p: {
       fontSize: 3,
     },
