@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Image from "gatsby-image"
 import { bioContainerStyles, profileImageStyles } from "./styles"
 
@@ -39,9 +39,9 @@ const Bio: React.FC = () => {
       />
       <p>
         Personal blog by{"  "}
-        <a href={social.twitter}>
+        <Link to={"/"}>
           <strong>{author}</strong>
-        </a>
+        </Link>
         , mobile and web developer from Bengaluru, India and a UI/UX enthusiast.
         In ❤️ with all things javascript.
       </p>

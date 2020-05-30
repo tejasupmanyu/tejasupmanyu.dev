@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Image from "gatsby-image"
 import SEO from "../components/seo"
 import {
@@ -59,9 +59,9 @@ const Landing: React.FC = () => {
           <a href={linkedin} target="_blank">
             LinkedIn
           </a>
-          <a href={`${blogUrl}`} className="blog-link">
+          <Link to={`/blog`} className="blog-link">
             Blog
-          </a>
+          </Link>
         </nav>
         <section className="profile" sx={profileStyles}>
           <Image
@@ -82,7 +82,7 @@ const Landing: React.FC = () => {
             </a>
             . I am a fan of all things Javascript and in a never ending love
             with UI. I also write about my experiments, opinions and learnings
-            around Javascript and the web on my <a href={"/blog"}>blog</a>.{" "}
+            around Javascript and the web on my <Link to={"/blog"}>blog</Link>.{" "}
             <br />I am a cricket 🏏 fanatic, a tennis 🎾 rookie and a design
             enthusiast.
           </p>
