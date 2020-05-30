@@ -43,56 +43,50 @@ const Landing: React.FC = () => {
   const {
     author,
     social: { twitter, linkedin },
-    blogUrl,
     work: { orgName, designation, orgUrl },
     location,
   } = data.site.siteMetadata
 
-  if (typeof window !== `undefined`) {
-    return (
-      <React.Fragment>
-        <SEO title={`${author}`} />
-        <nav sx={navBarStyles}>
-          <a href={twitter} target="_blank">
-            Twitter
+  return (
+    <React.Fragment>
+      <SEO title={`${author}`} />
+      <nav sx={navBarStyles}>
+        <a href={twitter} target="_blank">
+          Twitter
+        </a>
+        <a href={linkedin} target="_blank">
+          LinkedIn
+        </a>
+        <Link to={`/blog`} className="blog-link">
+          Blog
+        </Link>
+      </nav>
+      <section className="profile" sx={profileStyles}>
+        <Image
+          fixed={data.avatar.childImageSharp.fluid}
+          alt={author}
+          sx={profileImageStyles}
+        />
+        <div className="bio">
+          <h1 className="author-name">{`${author}`}</h1>
+          <h2 className="info">{`${designation} In ${location}`} 🇮🇳</h2>
+        </div>
+      </section>
+      <section className="introduction" sx={introductionStyles}>
+        <p>
+          👋🏼 Hello there! My name is Tejas and I am a software engineer at{" "}
+          <a href={orgUrl} target="_blank">
+            {orgName}
           </a>
-          <a href={linkedin} target="_blank">
-            LinkedIn
-          </a>
-          <Link to={`/blog`} className="blog-link">
-            Blog
-          </Link>
-        </nav>
-        <section className="profile" sx={profileStyles}>
-          <Image
-            fixed={data.avatar.childImageSharp.fluid}
-            alt={author}
-            sx={profileImageStyles}
-          />
-          <div className="bio">
-            <h1 className="author-name">{`${author}`}</h1>
-            <h2 className="info">{`${designation} In ${location}`} 🇮🇳</h2>
-          </div>
-        </section>
-        <section className="introduction" sx={introductionStyles}>
-          <p>
-            👋🏼 Hello there! My name is Tejas and I am a software engineer at{" "}
-            <a href={orgUrl} target="_blank">
-              {orgName}
-            </a>
-            . I am a fan of all things Javascript and in a never ending love
-            with UI. I also write about my experiments, opinions and learnings
-            around Javascript and the web on my <Link to={"/blog"}>blog</Link>.{" "}
-            <br />I am a cricket 🏏 fanatic, a tennis 🎾 rookie and a design
-            enthusiast.
-          </p>
-        </section>
-        <Footer />
-      </React.Fragment>
-    )
-  } else {
-    return null
-  }
+          . I am a fan of all things Javascript and in a never ending love with
+          UI. I also write about my experiments, opinions and learnings around
+          Javascript and the web on my <Link to={"/blog"}>blog</Link>. <br />I
+          am a cricket 🏏 fanatic, a tennis 🎾 rookie and a design enthusiast.
+        </p>
+      </section>
+      <Footer />
+    </React.Fragment>
+  )
 }
 
 export default Landing
