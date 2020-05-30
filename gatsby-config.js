@@ -6,7 +6,7 @@ module.exports = {
     siteUrl: `https://tejasupmanyu.dev`,
     blogUrl: `https://blog.tejasupmanyu.dev/blog`,
     location: "Bengaluru, India",
-    ogImageUrl: "https://ibb.co/SX43P64",
+    ogImageUrl: "/icon.png",
     work: {
       designation: "Software Engineer",
       orgUrl: "https://hashedin.com/",

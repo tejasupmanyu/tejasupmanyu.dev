@@ -19,6 +19,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
             description
             author
             ogImageUrl
+            siteUrl
           }
         }
       }
@@ -26,6 +27,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
+  const { author, ogImageUrl, siteUrl } = site.siteMetadata
 
   return (
     <Helmet
@@ -53,7 +55,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         },
         {
           property: `og:image`,
-          content: site.siteMetadata.ogImageUrl,
+          content: `${siteUrl}${ogImageUrl}`,
         },
         {
           name: `twitter:card`,
@@ -61,7 +63,7 @@ const SEO = ({ description, lang, meta, title }: Props) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: author,
         },
         {
           name: `twitter:title`,
