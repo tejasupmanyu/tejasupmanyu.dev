@@ -15,7 +15,7 @@ interface IHeaderProps {
 
 export const RootHeader: React.FC<IHeaderProps> = ({ title }) => (
   <h1 sx={rootHeaderStyles}>
-    <Link sx={linkStyles} to={`/`}>
+    <Link sx={linkStyles} to={`/blog`}>
       {title}
     </Link>
   </h1>
@@ -23,7 +23,7 @@ export const RootHeader: React.FC<IHeaderProps> = ({ title }) => (
 
 export const Header: React.FC<IHeaderProps> = ({ title }) => (
   <h3 sx={headerStyles}>
-    <Link sx={linkStyles} to={`/`}>
+    <Link sx={linkStyles} to={`/blog`}>
       {title}
     </Link>
   </h3>
@@ -31,7 +31,7 @@ export const Header: React.FC<IHeaderProps> = ({ title }) => (
 
 export const MiniHeader: React.FC<IHeaderProps> = ({ title }) => (
   <h3 sx={miniHeaderStyles}>
-    <Link sx={linkStyles} to={`/`}>
+    <Link sx={linkStyles} to={`/blog`}>
       {title}
     </Link>
   </h3>

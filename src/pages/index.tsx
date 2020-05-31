@@ -80,8 +80,8 @@ const Landing: React.FC = () => {
           </a>
           . I am a fan of all things Javascript and in a never ending love with
           UI. I also write about my experiments, opinions and learnings around
-          Javascript and the web on my <Link to={"/blog"}>blog</Link>. <br />I
-          am a cricket 🏏 fanatic, a tennis 🎾 rookie and a design enthusiast.
+          Javascript and the web on my <Link to={"/blog"}>blog</Link>. Besides
+          work, I am a cricket 🏏 fanatic and a tennis 🎾 rookie.
         </p>
       </section>
       <Footer />
