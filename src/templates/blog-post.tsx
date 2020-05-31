@@ -76,7 +76,12 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
       </Layout>
     )
   } else {
-    return null
+    return (
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+      />
+    )
   }
 }
 
