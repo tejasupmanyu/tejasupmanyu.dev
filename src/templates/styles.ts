@@ -51,3 +51,29 @@ export const navigationListStyle = {
   listStyle: `none`,
   padding: 0,
 }
+
+export const actionStyles = {
+  display: `flex`,
+  justifyContent: "flex-end",
+  padding: 2,
+  a: {
+    px: 2,
+    py: 1,
+    mx: 2,
+    i: {
+      mr: 1,
+    },
+  },
+
+  ".twitter-share-button": {
+    backgroundColor: "twitterBlue",
+    color: "#fff",
+    borderRadius: 2,
+  },
+
+  ".github-edit-button": {
+    backgroundColor: "secondary",
+    color: "#fff",
+    borderRadius: 2,
+  },
+}

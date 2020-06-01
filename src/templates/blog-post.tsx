@@ -12,6 +12,7 @@ import {
   postContentStyles,
   postTimeToReadStyles,
   navigationListStyle,
+  actionStyles,
 } from "./styles"
 import "./syntax.css"
 import { MiniHeader } from "../components/header/header"
@@ -48,6 +49,24 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
           sx={postContentStyles}
         />
+        <section className="actions" sx={actionStyles}>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURI(
+              `${window.location.href} - ${post.frontmatter.title} by @tejasupmanyu`
+            )}`}
+            className="twitter-share-button"
+          >
+            <i className="fab fa-twitter" />
+            Tweet
+          </a>
+          <a
+            className="github-edit-button"
+            href={`https://github.com/tejasupmanyu/tejasupmanyu.dev/edit/master/src/pages${post.fields.slug}index.md`}
+          >
+            <i className="fab fa-github" />
+            Edit on Github
+          </a>
+        </section>
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -100,6 +119,9 @@ export const pageQuery = graphql`
       timeToRead
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

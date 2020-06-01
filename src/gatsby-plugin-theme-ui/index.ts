@@ -8,6 +8,7 @@ export default {
     text: "#5f6c7b",
     highlight: "#1890ff",
     link: "#007ACC",
+    twitterBlue: "#00aced",
     modes: {
       dark: {
         background: "#0f0e17",
