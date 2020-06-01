@@ -10,7 +10,7 @@ Yes, [Rollup](https://rollupjs.org/guide/en/) or Rollup.js is a javascript modul
 
 ## Why Rollup? ⛩
 
-Well, there are a few tools more widely used and as well managed and supported as [Webpack](https://webpack.js.org). So the question begs, Why Rollup when we have Webpack? Well, let’s start with why Webpack as well? first. Webpack started as an effort to make building complex single page applications easier. As client side javascript apps grew in size and complexity - modules came into picture, there was a need of sophisticated bundling and shipping of these modules to the users’ browser.
+Well, there are very few tools more widely used and as well managed and supported as [Webpack](https://webpack.js.org). So the question begs, Why Rollup when we have Webpack? Let’s start with why Webpack as well? first. Webpack started as an effort to make building complex single page applications easier. As client side javascript grew in size and complexity - modules came into picture, there was a need of sophisticated tooling for bundling and shipping of these modules to the users’ browser.
 
 Webpack burst onto the scene, starting in 2012, with its’ two amazing features that paved the way complex web applications -
 
@@ -22,7 +22,7 @@ Webpack burst onto the scene, starting in 2012, with its’ two amazing features
 
 Rollup does all of it but the genius of Rollup comes from Its dealing in ES6 modules, not in ancient systems like CommonJS and AMD. Use of ES6 modules makes Rollup produce flat distributable which are leaner and more efficient than others.
 
-> A bit uncomfortable with Module systems? Checkout this blog post.
+> A bit uncomfortable with Module systems? Checkout [this](https://tejasupmanyu.dev/javascript-modules-to-hell-and-back/) blog post.
 
 Rollup has been around for around 4 years now and is the foremost choice for library authors. [This PR](https://github.com/facebook/react/pull/9327) landed in React back in 2017, changing the bundler to Rollup. Why? Because Rollup is modern, faster and produces learner, more efficient bundles and since It works on ES6 modules, It makes a huge sense for libraries if not for apps, where you still might have to depend on packages using other module systems like CommonJS.
 
@@ -30,15 +30,20 @@ Now, what’s the catch? If Rollup is so good, why not use it everywhere? Becaus
 
 > Rollup for libraries, Webpack for apps - Common Wisdom 2020 Edition
 
-Though ParcelJS is a great new bundler, and I really love it, but the community support is still not comparable to that of big ol’ Webpack.
+Though [ParcelJS](https://parceljs.org/) is a great new bundler, and I really love it, but the community support is still not comparable to that of big ol’ Webpack.
 
 > We’ll bring up ParcelJS in another post, stay tuned!
 
-As I said, Rollup in 2020 is meant for libraries and is not the best choice for an app, but the post header says something else, well yeah, I wanted to see for myself how easy/tough it is to start from scratch with Rollup. After a lot of searching, I wasn’t able to find a good resource on the internet which guides through the process of starting up a basic React + Typescript app with Rollup, so I thought why not write one.
+As I said, Rollup in 2020 is meant for libraries and is not the best choice for an app, but the post header says something else, well yeah, I wanted to see for myself how easy/tough it is to start an app from scratch with Rollup. After a lot of searching, I wasn’t able to find a good resource on the internet which guides through the process of starting up a basic React + Typescript app with Rollup, so I thought why not write one.
+
+<img src="https://images.squarespace-cdn.com/content/v1/5afa105faa49a17102577b1a/1526946182715-GTY9MZYZTLZ8CTTANO4O/ke17ZwdGBToddI8pDm48kCUe0pgTl1YSO3dur9B2ep1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpw9MzbxmfqbbQE5TVTBe-JCQ_swKB9DW0tJ17HMR_NTgBlcEYJhhMZIg-r4fXBXsd0/moment+of+clarity.png"
+  alt="Spongebob squarepants writing"
+  style="width: 100%"
+/>
 
 ## Creating a React + Typescript App with Rollup 👨🏻‍💻
 
-So now that we are done with what and the why of Rollup. Let’s start a very basic React + Typescript app bundled by Rollup or let’s _Rollup_ a React + Typescript app (Yes, I desperately wanted to say that)
+So now that we are done with 'what' and the 'why' of Rollup. Let’s start a very basic React + Typescript app bundled by Rollup or let’s _Rollup_ a React + Typescript app (Yes, I desperately wanted to say that)
 
 ### What we’ll create 👀
 
