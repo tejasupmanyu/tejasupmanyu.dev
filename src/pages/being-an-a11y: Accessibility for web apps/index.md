@@ -39,7 +39,7 @@ Standard guidelines and principles for ensuring accessibility on the web have be
 - **Understandable** - The content/application should be understandable by all. Experiences on the web should be clutter and confusion free.
 - **Robust** - The content/application should not break on different browsers or when being consumed using different assistive technologies like the ones mentioned in the previous section.
 
-Well at this point you might be overwhelmed or all of this might appear hazy and vague to be implemented right? Well WCAG is a long document and discusses these points and associated patterns and guidelines in details. [WebAIM](https://webaim.org) (Web Accessibility In Mind) also has a clear, concise list and processes that can be followed to achieve maximum accessibility on the web.
+Well at this point you might be overwhelmed or all of this might appear hazy and vague to be implemented right? Well WCAG is a long document and discusses these points and associated patterns and guidelines in details. [WebAIM (Web Accessibility In Mind)](https://webaim.org) and [The a11y Project](https://a11yproject.com/checklist/) also have a clear, concise list and processes that can be followed to achieve maximum accessibility on the web.
 
 ## Small Steps Towards Accessibility ✊🏼
 
@@ -85,7 +85,13 @@ One of the most occurring problems where ARIA fits in is - custom radio buttons 
 
 Using ARIA we can tell the browser to interpret these elements differently in the accessibility tree and hence the screen readers will 'read' them differently. Just add `role=checkbox` and `aria-checked=true`` to indicate that the role of this div is a checkbox, so it basically is imitating a checkbox and the checked state is true. That's all, screen readers will now read those custom checkboxes as checkboxes with their state not just speak them out as groups. How cool is that?ARIA attributes help us modify the accessibility tree but have no effect on the appearance or behaviour of that element. It doesn't really add or change anything except adding additional semantics to a element. You'd still have to add keyboard support for these custom checkboxes.
 
-ARIA gives a lot of tools and goodies to make existing and custom UI patterns possible and accessible rich.
+ARIA gives a lot of tools and goodies to make existing and custom UI patterns possible and accessible rich. But beware, since ARIA puts a lets developers modify the accessibility tree, bad values to aria attributes can do more damage than good. As the ARIA guide says, "No ARIA is better than bad ARIA" , consider this example.
+
+```html
+<div role="button">Sign up</div>
+```
+
+Giving this div a role of button will make screen readers and other assistive technologies consider this `div` a button, but there's no button functionality implemented (`onClick` and more), this is example of bad ARIA as user expects this to be button, but it isn't and will leave the users perplexed. The knowledge of ARIA authoring practices and design patterns to be kept in mind while writing custom components is really important, this [official guide](https://www.w3.org/TR/wai-aria-practices/) and the folks at [a11yProject](https://a11yproject.com/patterns/) have done an amazing job putting these principles together, do check them out.
 
 ### Art of Labelling ✍🏻
 
