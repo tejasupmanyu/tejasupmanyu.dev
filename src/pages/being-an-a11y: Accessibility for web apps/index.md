@@ -28,10 +28,11 @@ Enabling users with situational, temporary or permanent motor disabilities to us
 
 ### Screen Readers
 
-Screen readers are utility software which help people with sight related issues in navigating and consuming the content on the web. The most popular examples are -
+Screen readers are utility software which help people with sight related issues in navigating and consuming the content on the web. The most popular examples are
 
-- Voice over on Mac
-- NVDA on Windows
+#### Voice over on Mac
+
+#### NVDA on Windows
 
 ## Principles & Guidelines
 
@@ -104,7 +105,7 @@ We should try to have distinguishable hover and focus states for control element
 
 Focusing on 'focus' 👀, focus indicates which element on page is ready to accept user keyboard events. Consider 'focus' to be the mouse 'pointer' for folks using keyboard for navigation. The blue bad outline you see on your custom buttons or a HTML input field when clicked is called focus ring. And developers don't really like it, because it is often an ugly blot on your stellar app. So what we do is just add some css to make outline 0 and then sleep peacefully knowing they've removed an irritating, ugly thing from their app but what we often don't realise is that we've essentially hidden the 'pointer' for users using keyboard, essentially making the app unusable for them using keyboard because now they can't figure out which element is in focus.
 
-So how to avoid the ugly outline on click but still maintain it for users using the web app using a keyboard? There is a CSS4 working draft on `[:focus-visible](https://css-tricks.com/almanac/selectors/f/focus-visible/)` pseudo class, which will let developers apply styles to indicate focus on elements when they are used. Though since this is still a working draft it is not implemented by any browser but Firefox.
+So how to avoid the ugly outline on click but still maintain it for users using the web app using a keyboard? There is a CSS4 working draft on [`:focus-visible`](https://css-tricks.com/almanac/selectors/f/focus-visible/) pseudo class, which will let developers apply styles to indicate focus on elements when they are used. Though since this is still a working draft it is not implemented by any browser but Firefox.
 
 ### Colors & Contrast
 
@@ -126,7 +127,7 @@ There are some great tools out there for contrast ratio calculation, [here's one
 
 Have you seen or written that sidebar with some links which a user can hide? or some other UI component for that matter which can be toggled to be not visible on the screen? In most implementations of that hiding sidebar we use some transitions to slide out the sidebar into far left/right of the viewport so it is no more visible to the user but it is still there in the DOM and so it is picked up by keyboard or screen readers even and while your users are tabbing through they see no element focused on the screen because actually the focus is on some element on that hidden sidebar, this is a really confusing experience. Elements that are hidden should also not catch focus right?
 
-To make the browser "ignore" the element from assistive technologies, page search and text selection, you should use the boolean `[inert](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert)` attribute. As of today, it is not included in any browser but there's an active web standard proposal. Until then, you can use the [polyfill](https://github.com/WICG/inert).
+To make the browser "ignore" the element from assistive technologies, page search and text selection, you should use the boolean [`inert`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert) attribute. As of today, it is not included in any browser but there's an active web standard proposal. Until then, you can use the [polyfill](https://github.com/WICG/inert).
 
 ### Accessible 3rd party components
 
@@ -138,7 +139,7 @@ Auditing and frequent reviews are a great way to ensure that the apps you build 
 
 - [Axe](https://github.com/dequelabs/axe-core) by Dequeue labs is an open source accessibility testing engine for web UIs. It can easily integrate with any existing testing environment and can help you catch those accessibility issues during development. There is a super useful [chrome extension](https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd) for it as well.
 - Folks at Chrome have built some really nice features and tools around accessibility in Chrome developer tools. [Lighthouse](https://developers.google.com/web/tools/lighthouse) also includes accessibility testing built on top of axe-core and since Lighthouse is now part of chrome developer tools, It is easier than ever to audit accessibility of your app while developing.
-- There are plenty of linter plugins available for pointing out accessibility issues with your code. If you are React dev, make sure to use `[eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)`
+- There are plenty of linter plugins available for pointing out accessibility issues with your code. If you are React dev, make sure to use [`eslint-plugin-jsx-a11y`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)
 - How to do a quick accessibility audit?
 
   Anyone whether a developer or not can do a quick accessibility audit to check if there are some major accessibility loopholes, which can be fixed. This method is not exhaustive, but does cover the most important aspects of accessibility.
