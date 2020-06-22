@@ -8,7 +8,7 @@ We as developers often fail to acknowledge that web is a diverse place, meant fo
 
 > The intention behind this blog post is to discuss Accessibility (a11y) for Web applications as well as to layout some ways using which you can make your apps more accessible than they are already with minimal development efforts. If you know about Accessibility, the ideas and concepts shared here would be of marginal interest to you but if you are new to the term, I'd like to clear some mist around the topic, I care about.
 
-## What is Accessibility and Why should you care?
+## What is Accessibility and Why should you care? 👨🏻‍🦯
 
 So, accessibility or often abbreviated as a11y (a and the 11 letters in accessibility till y) refers to the degree/features/considerations on your web apps that make the app more accessible and usable for your users with physical disabilities like motor disabilities and sight related issues. Accessibility is all about enabling and empowering people with with physical limitations to access your applications on the web. Technology is a great enabler, especially for the disabled. I think it is well within our duty as frontend engineers to make our apps 'accessible' and open to all.
 
@@ -18,9 +18,9 @@ Ensuring accessibility is not just for the disabled, it is broadly observed that
 
 Accessibility is not just about the 'disabled' per say. As we age, our senses tend to get weaker especially sight. It is quite bizarre to think that people who we casually call boomers today (born around 1950-70) who would be about at least 50 years old now, the very people who saw the invention of web, the people who invented the web and laid ground for most of the tech we see today won't be able to comfortably use our apps. Or just think about a slightly old developer, YOU in 2050, finding it hard to read those small letters on the screen and navigating an app on that fancy app. Are we just going to ignore the difficulties faced by those elderly or temporarily disabled users as well? Are we just going to de-prioritise a better experience for a 60 year old YOU? See suddenly, accessibility makes sense right.
 
-## Assistive Technologies
+## Assistive Technologies 💻
 
-The web as a platform already has some super useful stuff baked in to enable accessible experiences for everyone. Some most used assistance platform provides are -
+The web as a platform already has some super useful stuff baked in to enable accessible experiences for everyone. Some most used assistance platform provides are:
 
 ### Keyboard Navigation
 
@@ -28,13 +28,9 @@ Enabling users with situational, temporary or permanent motor disabilities to us
 
 ### Screen Readers
 
-Screen readers are utility software which help people with sight related issues in navigating and consuming the content on the web. The most popular examples are
+Screen readers are utility software which help people with sight related issues in navigating and consuming the content on the web. The most popular examples are - Voice over on Mac and NVDA on Windows
 
-#### Voice over on Mac
-
-#### NVDA on Windows
-
-## Principles & Guidelines
+## Principles & Guidelines 📜
 
 Standard guidelines and principles for ensuring accessibility on the web have been put together by platform and accessibility experts into a document known as [WCAG (Web Content Accessibility Guidelines)](https://www.w3.org/TR/WCAG20/). WCAG contain a ton of recommendations, patterns, guidelines and principles, which if followed make applications accessible to a wide range of disabled folks. WCAG is based on four (read **_POUR_**) cornerstone principles -
 
@@ -45,11 +41,11 @@ Standard guidelines and principles for ensuring accessibility on the web have be
 
 Well at this point you might be overwhelmed or all of this might appear hazy and vague to be implemented right? Well WCAG is a long document and discusses these points and associated patterns and guidelines in details. [WebAIM](https://webaim.org) (Web Accessibility In Mind) also has a clear, concise list and processes that can be followed to achieve maximum accessibility on the web.
 
-## Small Steps Towards Accessibility
+## Small Steps Towards Accessibility ✊🏼
 
 So enough theory and principles, what can you do and start doing today in your code to ensure you are on your way towards accessible applications? Here are some small steps and conscious decisions you can take which will incur minimal development efforts but can yield high accessibility.
 
-### Semantics Matter.
+### Semantics Matter. ✔️
 
 Use of proper HTML Semantics play a very big role in making your apps accessible. If you haven't heard about semantic HTML, here's a quick definition -
 
@@ -74,14 +70,14 @@ Here are some key points and mistakes you should avoid -
   - You can add hidden headings if not in design to make screen reading experience better.
   - Use landmark elements - `<nav>`, `<aside>`, `<main>` etc, people avoid them but they offer better and more efficient navigation using semantics built in.
 
-### Use the platform!
+### Use the platform! 🕺🏻
 
 - Try to use the elements provided by HTML as much as possible. They have focus, keyboard support, semantics built in!
 - Just use the button, instead of using divs and adding click listeners to them. A common accessibility anti-pattern is to treat a non-interactive element, like a `div` or a `span`, as a button by adding a click handler to it. Which handles the click event but does not offer - focus via the keyboard, support being disabled, support the `ENTER` or `SPACE` keys to perform an action, announced properly by a screen reader. All of which is very much required for accessibility
 - Understand links vs Buttons. Links are meant for navigation while buttons are meant for actions. Adding onClick on an `<a>` is considered an accessibility pitfall because links and buttons are read differently by screen readers.
 - But as we all know HTML element primitives are hard to style and that is something that is slowly but definitely changing but It is still early days. It is common to stumble upon a design which requires you to create custom components or use different HTML tags to imitate a functionality by another HTML element. That's where ARIA jumps in.
 
-### ARIA and Accessible Design Patterns
+### ARIA and Accessible Design Patterns 🔖
 
 Sometimes (happening most of the times now) is that simple HTML elements aren't enough for fulfilling design requirements. I said use the platform but platform elements today are ugly out of the box and in general are really hard to style according to needs. That's where [WAI-ARIA](https://www.w3.org/TR/wai-aria-1.1/) enters. WAI-ARIA stands for Web Accessibility Initiative - Accessibility Rich Internet Applications. Yes, if you can remember the full form, you get good karma points. Often just referred to as ARIA. ARIA is a specification which allows you to specify extra attributes on your elements which instruct the browser to interpret the elements differently in the accessibility tree.
 
@@ -91,7 +87,7 @@ Using ARIA we can tell the browser to interpret these elements differently in th
 
 ARIA gives a lot of tools and goodies to make existing and custom UI patterns possible and accessible rich.
 
-### Art of Labelling
+### Art of Labelling ✍🏻
 
 Remember we discussed the core principles of WCAG some time ago? The [first principle of POUR](https://www.w3.org/TR/WCAG20/#text-equiv) (Perceivable, Operable, Understandable and Robust) - The UI/Content should be perceivable by users, i.e they should be presented in ways that all users can perceive them. The very first Guideline states that we should provide text alternatives for all non-text content like images, icons etc so that it can be transformed into forms people with disability can understand like speech, braille, symbols or simpler language etc. It also states that controls, which also are non-text content and accept user input must have a name describing their purpose
 
@@ -99,7 +95,7 @@ So how to we label elements? Well, browsers get smart in some cases and use the 
 
 Adding succinct and meaningful labels to elements and especially control elements is an art and adds greatly to the experience of users who are visually impaired as screen readers pick out the associated labels and read them out, giving users a better sense of layout, controls and associated behaviour.
 
-### Distinguishable Hover, Focus states.
+### Distinguishable Hover, Focus states. ✨
 
 We should try to have distinguishable hover and focus states for control elements, hover states give a visual indication that the element over which the mouse is being hovered is actually something which can be interacted with, hover states help users differentiate interactive elements on a page from non-interactive elements, and while these visual cues might not seem to do a lot, they really contribute to a better user experience while using your app.
 
@@ -107,7 +103,7 @@ Focusing on 'focus' 👀, focus indicates which element on page is ready to acce
 
 So how to avoid the ugly outline on click but still maintain it for users using the web app using a keyboard? There is a CSS4 working draft on [`:focus-visible`](https://css-tricks.com/almanac/selectors/f/focus-visible/) pseudo class, which will let developers apply styles to indicate focus on elements when they are used. Though since this is still a working draft it is not implemented by any browser but Firefox.
 
-### Colors & Contrast
+### Colors & Contrast 🌈
 
 Modern web apps carry a whole lot of style and colors. The choice of colors is really important, even more the contrast. Contrast can be crudely called the difference between two colors. Imagine a color wheel, two colors really close to each other like blue and indigo would be really hard to discern if one is used as background and other as foreground color. Colors placed far apart on the color wheel have really great contrast but doesn't mean they'll look really great together (subjective choices!). In context of web, colors are an integral part of text, images and other kinds of content, if the contrast is not good enough, users will find it really hard to _percieve_ the content, leading to bad user experience.
 
@@ -123,17 +119,17 @@ There is an [enhanced version (1.4.6)](https://www.w3.org/TR/UNDERSTANDING-WCAG2
 
 There are some great tools out there for contrast ratio calculation, [here's one](https://contrast-ratio.com/) I use mostly.
 
-### Inert Elements
+### Inert Elements 💈
 
 Have you seen or written that sidebar with some links which a user can hide? or some other UI component for that matter which can be toggled to be not visible on the screen? In most implementations of that hiding sidebar we use some transitions to slide out the sidebar into far left/right of the viewport so it is no more visible to the user but it is still there in the DOM and so it is picked up by keyboard or screen readers even and while your users are tabbing through they see no element focused on the screen because actually the focus is on some element on that hidden sidebar, this is a really confusing experience. Elements that are hidden should also not catch focus right?
 
 To make the browser "ignore" the element from assistive technologies, page search and text selection, you should use the boolean [`inert`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert) attribute. As of today, it is not included in any browser but there's an active web standard proposal. Until then, you can use the [polyfill](https://github.com/WICG/inert).
 
-### Accessible 3rd party components
+### Accessible 3rd party components 🔗
 
 A lot of the development today depends on 3rd party components and packages from NPM. Consciously choosing and using components/libraries which are accessible or have accessibility as one of their foremost concerns can help your application score more on accessibility.
 
-## Auditing & Culture
+## Auditing & Culture 💡
 
 Auditing and frequent reviews are a great way to ensure that the apps you build are accessible. There are some great tools out there to help you score big on accessibility. Here are some most used ones -
 
@@ -153,7 +149,7 @@ Auditing and frequent reviews are a great way to ensure that the apps you build 
 - As with all non-functional requirements, you need to build a culture which cares about those requirements, so is the case with accessibility. Until senior engineers, managers and leads put a price and cultivate a culture which is founded on talking and caring about these requirements, such efforts are hard to sustain.
 - As developers, we ought to advocate accessibility with clients and stakeholders who might not know about it and its' significance.
 
-## Inspirations on the web
+## Inspirations on the web 😇
 
 What do accessible web apps feel like? Or what are some great examples for inspiration? I personally, really admire the work done by the following web apps on accessibility front. Check them out, use them with keyboard or a screen reader, they are so good!
 
@@ -162,7 +158,7 @@ What do accessible web apps feel like? Or what are some great examples for inspi
 - [Amazon](https://amazon.com/)
 - [WebAIM](https://webaim.org)
 
-## Delivering Considerate Experiences
+## Delivering Considerate Experiences ❤️
 
 Internet started out as a means of communication, email and stuff. The fact that one person changes something at one place and it reflects on the other's computer is a quite overlooked power of the web. The web has come a long long way, It is not just about communications or email anymore. We have been packing and delivering entire user experiences on the web for quite some years now, and not only experiences some really great experiences are today delivered on demand using just a random string we call url.
 
