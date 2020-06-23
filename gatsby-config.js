@@ -5,6 +5,7 @@ module.exports = {
     description: `Tejas Upmanyu's Blog`,
     siteUrl: `https://tejasupmanyu.dev`,
     blogUrl: `https://blog.tejasupmanyu.dev/blog`,
+    linksUrl: `https://tejasupmanyu.dev/links`,
     location: "Bengaluru, India",
     ogImageUrl: "/icon.png",
     work: {

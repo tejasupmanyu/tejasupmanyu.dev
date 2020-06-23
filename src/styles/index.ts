@@ -94,3 +94,22 @@ export const introductionStyles = {
     },
   },
 }
+
+export const linksStyles = {
+  display: "flex",
+  "flex-direction": "column",
+  padding: 4,
+  pb: 1,
+  h1: {
+    m: 2,
+  },
+
+  "@media screen and (min-width: 992px)": {
+    "flex-direction": "row",
+    pb: 4,
+    alignItems: "unset",
+    ".bio": {
+      textAlign: "left",
+    },
+  },
+}

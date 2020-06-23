@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     query {
       site {
         siteMetadata {
-          blogUrl
+          linksUrl
           social {
             twitter
             github
@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
   `)
   const {
     social: { twitter, instagram, github, linkedin, medium },
-    blogUrl,
+    linksUrl,
   } = data.site.siteMetadata
   return (
     <footer sx={footerStyles}>
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
       <a href={linkedin} target="_blank">
         <i className="fab fa-linkedin" />
       </a>
-      <a href={blogUrl}>
+      <a href={"/links"}>
         <i className="fas fa-link" />
       </a>
     </footer>
