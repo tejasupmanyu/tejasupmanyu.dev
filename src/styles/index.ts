@@ -102,14 +102,91 @@ export const linksStyles = {
   pb: 1,
   h1: {
     m: 2,
+    color: "primary",
+  },
+
+  ".links": {
+    width: "100%",
+  },
+
+  ".link": {
+    mb: 4,
+    padding: 2,
+    border: "1px solid",
+    borderColor: "rgba(0, 0, 0, 0.1)",
+    borderLeft: "4px solid",
+    borderLeftColor: "tertiary",
+    boxShadow: "0px 6px 10px 0px rgba(0,0,0,0.1)",
+    borderRadius: 2,
+    minHeight: "5em",
+    "&:hover": {
+      boxShadow: "5px 10px 15px 5px rgba(0,0,0,0.1)",
+    },
+
+    ".title": {
+      fontWeight: "bold",
+      mb: 2,
+      color: "primary",
+    },
+
+    ".description": {},
+
+    ".resources": {
+      mb: 2,
+      ".resource": {
+        display: "inline-block",
+        margin: 0,
+        mx: 2,
+        a: {
+          textDecoration: "underline",
+        },
+      },
+    },
   },
 
   "@media screen and (min-width: 992px)": {
-    "flex-direction": "row",
     pb: 4,
     alignItems: "unset",
     ".bio": {
       textAlign: "left",
     },
+
+    ".links": {
+      width: "50%",
+    },
+  },
+}
+
+export const profileImageThumbStyles = {
+  marginRight: rhythm(1 / 2),
+  marginBottom: 0,
+  borderRadius: `50%`,
+  width: "32px",
+  height: "32px",
+
+  "@media screen and (min-width: 992px)": {
+    width: "72px",
+    height: "72px",
+  },
+}
+
+export const linksNavBarStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  margin: 2,
+  px: 3,
+
+  a: {
+    mx: 2,
+    p: 1,
+    cursor: "pointer",
+    color: "link",
+  },
+
+  ".blog-link": {
+    backgroundColor: "tertiary",
+    color: "white",
+    padding: 2,
+    borderRadius: 2,
   },
 }

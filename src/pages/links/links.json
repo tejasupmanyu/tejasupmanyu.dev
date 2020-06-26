@@ -1,0 +1,19 @@
+{
+  "links": [
+    {
+      "title": "Being an a11y: Accessibility for Web Apps @NFR Conference, 27 June, 2020",
+      "description": "Slides and resources for my talk on Accessibility for Web Apps at NFR Conference, 27 June, 2020 by HashedIn.",
+      "resources": [
+        {
+          "label": "Slides",
+          "url": "https://speakerdeck.com/tejasupmanyu/being-an-a11y-accessibility-for-web-apps-7cfd4fbb-d0cf-4134-8ad4-9a4df2940da7"
+        },
+        {
+          "label": "Blog",
+          "url": "https://tejasupmanyu.dev/being-an-a11y:%20Accessibility%20for%20web%20apps/"
+        }
+      ]
+    }
+  ],
+  "total": 1
+}

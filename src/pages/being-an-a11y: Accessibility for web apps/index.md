@@ -41,7 +41,7 @@ Standard guidelines and principles for ensuring accessibility on the web have be
 
 Well at this point you might be overwhelmed or all of this might appear hazy and vague to be implemented right? Well WCAG is a long document and discusses these points and associated patterns and guidelines in details. [WebAIM (Web Accessibility In Mind)](https://webaim.org) and [The a11y Project](https://a11yproject.com/checklist/) also have a clear, concise list and processes that can be followed to achieve maximum accessibility on the web.
 
-## Small Steps Towards Accessibility ✊🏼
+## Small Steps Towards Accessibility 🧗🏻‍♂️
 
 So enough theory and principles, what can you do and start doing today in your code to ensure you are on your way towards accessible applications? Here are some small steps and conscious decisions you can take which will incur minimal development efforts but can yield high accessibility.
 
@@ -65,8 +65,31 @@ Here are some key points and mistakes you should avoid -
 
 - `<div>` is not the only tag in HTML for grouping. There are more meaningful and semantic tags, think before using divs recklessly.
 - Use headings & landmarks, they enable better and efficient navigation with screen readers.
+
   - use heading tags
-  - don't skip heading level tags
+  - don't skip heading level tags, skipping between heading tags, i.e using a `h3` before a `h2` breaks page structure and might confuse screen readers.
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Sample App</title>
+    </head>
+    <body>
+      <h1>
+        Main Heading
+      </h1>
+      <h3>
+        Sub Heading
+      </h3>
+      <div class="card">
+        <h5>Card Title</h5>
+      </div>
+    </body>
+  </html>
+  ```
+
   - You can add hidden headings if not in design to make screen reading experience better.
   - Use landmark elements - `<nav>`, `<aside>`, `<main>` etc, people avoid them but they offer better and more efficient navigation using semantics built in.
 
@@ -113,7 +136,11 @@ So how to avoid the ugly outline on click but still maintain it for users using 
 
 Modern web apps carry a whole lot of style and colors. The choice of colors is really important, even more the contrast. Contrast can be crudely called the difference between two colors. Imagine a color wheel, two colors really close to each other like blue and indigo would be really hard to discern if one is used as background and other as foreground color. Colors placed far apart on the color wheel have really great contrast but doesn't mean they'll look really great together (subjective choices!). In context of web, colors are an integral part of text, images and other kinds of content, if the contrast is not good enough, users will find it really hard to _percieve_ the content, leading to bad user experience.
 
-[WCAG 2.0, section 1.4.3](https://www.notion.so/Being-an-a11y-Accessibility-for-Web-Apps-5472160f4a524ff5be7dfc49b7ab2303#965c67f6fc404694a1a09ba9a3174b89) suggests some minimum contrast levels to be maintained for good readability.
+<figure>
+<img src="https://i.ibb.co/ys1QXmW/contrast-levels.png" alt="contrast levels" />
+  <figcaption style="text-align: center; font-style: italic">Increasing Contrast levels</figcaption>
+</figure>
+[WCAG 2.0, section 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) suggests some minimum contrast levels to be maintained for good readability.
 
 - Text and Images should have a contrast ratio of 4.5:1, which means the the difference of luminescence between foreground and background colors should be atleast 4.5 to 1.
 - Whereas, large text (over 18pt or 14 bold) should have a contrast ratio of 3:1.
@@ -141,6 +168,7 @@ Auditing and frequent reviews are a great way to ensure that the apps you build 
 
 - [Axe](https://github.com/dequelabs/axe-core) by Dequeue labs is an open source accessibility testing engine for web UIs. It can easily integrate with any existing testing environment and can help you catch those accessibility issues during development. There is a super useful [chrome extension](https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd) for it as well.
 - Folks at Chrome have built some really nice features and tools around accessibility in Chrome developer tools. [Lighthouse](https://developers.google.com/web/tools/lighthouse) also includes accessibility testing built on top of axe-core and since Lighthouse is now part of chrome developer tools, It is easier than ever to audit accessibility of your app while developing.
+- [A11Y](https://github.com/addyosmani/a11y) by Addy Osmani is a great command line utility for generating accessibility reports.
 - There are plenty of linter plugins available for pointing out accessibility issues with your code. If you are React dev, make sure to use [`eslint-plugin-jsx-a11y`](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)
 - How to do a quick accessibility audit?
 

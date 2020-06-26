@@ -2,7 +2,7 @@
 import { jsx } from "theme-ui"
 import * as React from "react"
 import { footerStyles } from "./styles"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 export const Footer: React.FC = () => {
   const data = useStaticQuery(graphql`
@@ -42,9 +42,9 @@ export const Footer: React.FC = () => {
       <a href={linkedin} target="_blank">
         <i className="fab fa-linkedin" />
       </a>
-      <a href={"/links"}>
+      <Link to={"/links"}>
         <i className="fas fa-link" />
-      </a>
+      </Link>
     </footer>
   )
 }
