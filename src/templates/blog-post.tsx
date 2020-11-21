@@ -54,7 +54,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
             href={`https://twitter.com/intent/tweet?text=${encodeURI(
               `${window.location.href} - ${post.frontmatter.title} by @tejasupmanyu`
             )}`}
-            className="twitter-share-button"
+            className="twitter-share-btn"
           >
             <i className="fab fa-twitter" />
             Tweet

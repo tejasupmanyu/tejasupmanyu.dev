@@ -65,7 +65,7 @@ export const actionStyles = {
     },
   },
 
-  ".twitter-share-button": {
+  ".twitter-share-btn": {
     backgroundColor: "twitterBlue",
     color: "#fff",
     borderRadius: 2,
