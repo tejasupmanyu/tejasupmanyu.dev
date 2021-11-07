@@ -1,0 +1,94 @@
+---
+title: "I built a Svelte, Sapper + Tailwind CSS app! 🎒"
+date: "2020-11-21"
+description: Thoughts, opinions and learnings after building a svelte-sapper + tailwind css app.
+hero: /content/posts/I-built-a-Svelte-Sapper-Tailwind-CSS-app/hero.png
+category: Svelte
+---
+
+Alright, I gave in to the hype around [Svelte](https://svelte.dev/) in web development circles and since 2020 has lended us a little more time, I decided to build an app and see for myself if Svelte is really as good as it is touted to be on the Internet.
+
+It all started with me randomly checking out Rich Harris' [talk](https://www.youtube.com/watch?v=AdNJ3fydeao) titled `Rethinking Reactivity` and after a long time I was so excited about a new Javascript framework way for building web apps. Svelte has a lot of 'new' things about it which differentiate it from the reigning Javascript frameworks and libraries. Perhaps the most striking one being that Svelte actually has a compiler to do all the heavy-lifting. You write code in `.svelte` files which can contain your svelte code(more like html with some extra goodies) and styles, compiled into javascript and css by svelte compiler into an optimised bundle, so no extra library code like React or others, making the app smaller hence faster to load. Svelte removes all the overhead which comes with a Javascript library or framework making the apps hit raw performance.
+
+The Internet is full with buzz about Svelte as it is with every new shiny thing in the Javascript town. So I decided to jump on the hype train to check if Svelte is really the future of web apps. While I was learning Svelte, using the official Svelte website tutorial, which is awesome, I came across [Sapper](https://sapper.svelte.dev/). Sapper is the svelte version of Next.JS if you come from the React world. Sapper is a svelte based framework for building web apps, making some good choices and assumptions, making starting up with svelte easy. Although Sapper has great potential, It is not really getting the love it needs. Anyways, I went ahead with Sapper as the base for my project.
+
+I ❤️ styles and hence I always keep an eye on ways to manage and do styles better in web apps. [Tailwind CSS](https://tailwindcss.com/docs) has made a lot of name out there in recent times. For those who have heard the name for the very first time, Tailwind CSS is a utility first css framework, which gives you a ton of css utility classes to style your apps, reducing or even removing custom semantic css. (remember our old pal, Bootstrap?)
+
+Though, I've never been a proponent of this utility-first css styling approach (and yes, I've worked with it), I've seen a lot of people saying really good things about It, so I thought why not give Tailwind a try as well.
+
+Before you proceed, know this - This post does not intend to be an introduction or fresher on Svelte, Sapper or Tailwind CSS. Consider this a dear diary post, about my thoughts and opinions after reading, using and struggling with these technologies for some time.
+
+## What the app? 👀
+
+Somehow the idea pool is always dry when it comes to a side project but here's what I went with - an app which lets users enter a url and save it with some description onto boards, then these boards can be shared with anyone. So sort of like a basic version of [Linktree](https://linktr.ee). It uses google auth for logging users in and users are able to create, edit and share their boards with other users and of course link previews!
+
+## Technologies Used 🧰
+
+As the title of the post says, this app was built using Svelte, Sapper to be precise. Tailwind CSS has grown in popularity in last few months, though I don't like the busy html classes way of styling, I thought I'd give it a try here and see if if changes my perspective.
+
+Deployment is not covered in this post, but this app can be essentially deployed anywhere where NodeJS is supported, I deployed it on a AWS ec2 instance for my development and testing, you can choose yours.
+
+## Just give me the code. 📓
+
+You can find the code [here](https://github.com/tejasupmanyu/linkr-svelte). This code is a work in progress, by no means ready for production or for the cold world.
+
+## Learnings, thoughts, opinions et al 😇
+
+### Svelte is new, so don't expect a lot of community support 😐
+
+Don't get me wrong, Svelte has been around for a few years now but has picked up traction recently after release of Svelte 3. Though It might be the next frontier of javascript frameworks, It is still lacking in community support, packages and help - which is a major factor for anyone picking up Svelte now for a serious project. As people are joining the Svelte way, new packages and support is brewing but It will still take some time to get to a position where building stuff becomes easy and frictionless with Svelte.
+
+The good thing is that Svelte comes with a lot of stuff - transitions, animations, clever syntactic constructs which make it worth your while.
+
+### Svelte code is different but also familiar 🦸🏻
+
+Svelte can be considered mostly javascript and then some. Markup is JSX-like, styles are written within html `<style>` tags as plain CSS which is scoped to the component. Svelte code is written under `<script>` tags. It all feels like developing apps using vanilla HTML, CSS and JS. So the learning curve isn't steep at all. As Rich Harris says -
+
+> Frameworks are a way to organize our minds, not code.
+
+Maybe my mind is seeking too much organization which is not there yet in case of Svelte with styles, html and javascript all coming at one place. When it comes to implementing 'Reactivity' Svelte has the `$` operator, which when put before any statement tells the compiler to re-evaluate whenever any value in that statement/expression changes. Whereas, assignment `=` operator derives the real reactivity behind the scenes.
+
+I've mostly worked with 'everything in JS' way of till now (React, Angular et al) and hence Svelte's everything in HTML seems kinda different but has definite upsides to it as well.
+
+### Svelte apps are definitely fast and small. ⚡️
+
+I now am a first-hand witness to the magic of Svelte when it comes to performance and size of apps. Since there is no runtime to be loaded, Svelte apps have considerably smaller bundle and hence load blazing fast. No runtime library code to execute (like React) means that apps not only load fast but feel fast while using them and this is not just on paper. Coming from developing React apps day-in and day-out, developing and running Svelte apps even in development mode felt faster.
+
+SSR (Server Side Rendering) is easier and much more performant with Svelte than with React for that matter. No need of serializing and sending long component trees over the wire anymore, ugh.
+
+### Sapper isn't ready for production (yet) 🙁
+
+So, I checked out Sapper, the framework in arms for Svelte. It is alright, comes with a lot of good stuff like server side rendering, SEO support, good navigation setup and lots more. Documentation is not exhaustive but nice enough to start with. Again a very small number of people out there really using and writing back about Sapper, if you get stuck, you are mostly on your own, as I found myself a couple of times while building this app.
+
+But even after almost an year, Sapper hasn't shown real progress and as of now appears in dire need of direction and contributions. Rich Harris himself admitted that there is a lot to done in Sapper, which isn't happening the way we would've liked at the [Svelte Society Day, 2020](https://www.youtube.com/watch?v=luM5uobewhA).
+
+In my use, I found Sapper quite helpful but also frustrating at times because of bugs and no one to tell you if what you are writing is wrong or the framework itself is buggy. So if you are building a big application, meant to go to production - steer clear of Sapper.
+
+### Svelte for big apps? 🚛
+
+Mmmmm, depends on your app and your team. Svelte is a compiler so size of your bundle will start way lower than with traditional frameworks but at some point, the cost of adding a component in case of svelte will become greater than with traditional frameworks, thankfully that point is not easy to reach, until you have components in order of several hundreds. So yes Svelte won't fail you as a compiler if your app gets big enough. But It is not Svelte that you should worry about, It is the community and ecosystem around it that might fail short of your or your team's expectations especially if they are coming from a React/Angular background.
+
+My take? Throw in a brainstorming session with your team and see if they all buy into this amazing shiny new Javascript thing called Svelte. If they do and are ready to take the pains that entail working with a relatively new technology, you can go with Svelte. Or just wait for an year and let the community flower and then pick up Svelte for big apps at work.
+
+### Is Svelte ready to take on React? 🏋️‍♂️
+
+I'd wait to pit them against, just now. I might be wrong 2 years from the day this goes live, but not as of now. Svelte in my opinion is great for small apps, portfolios and blogs and marketing sites and ... you get the picture but for big, professional apps, I'd still bet of React all the time. That is not to say that Svelte will never be there, It might become the great React-killer we are so expecting (don't know why???) but right now It isn't. Svelte needs a lot of great contributions, community support and direction to steal the crown from React and I don't see that happening, at least for the next two years which is the maximum amount of time someone can expect things to stay somewhat as they are in the frontend world.
+
+## So, Tailwind CSS? 🤟🏻
+
+Yeah, so I went against my dislike for css utility classes flooding the HTML and tried Tailwind CSS with Svelte and I return with almost no dislike for them anymore. That is not to say that I am a fan now and I'll use them, It is just that if you use them, I won't give that deathly stare anymore. Tailwind is really well crafted and makes styling fast, consistent and easy. Integration and installation is still a bit messy. I had to go with the whole PostCSS, PurgeCSS ordeal but things are getting better with every new version. I didn't think I'd say this for css utility classes but with Tailwind It is kinda addictive. Do give it a try, even if you are from the same semantic css school of thought as me. And yeah, I am not alone in this feeling -
+
+<blockquote className="twitter-tweet">
+  <p lang="en" dir="ltr">
+    While distracting myself I’m trying Tailwind for the first time. I have to
+    admit that after I forced myself to open the docs and search for what I need
+    a few times, the terseness is getting addicting.
+  </p>
+  &mdash; Dan Abramov (@dan_abramov) <a href="https://twitter.com/dan_abramov/status/1323758822045921280?ref_src=twsrc%5Etfw">November 3, 2020</a>
+</blockquote>
+
+There is one thing I'd like to point out. With tailwind the initially loaded css might be much more than your page actually requires on first paint, even after purging the unused parts of the css, I observed a significantly big ~ 10kb main css file, which is not ideal if you are fastidious about performance.
+
+## Closing
+
+So that right there is what I've gathered after spending almost a month on this side project with Svelte, Sapper and tailwind. This post is coming up after a long time, though I wrote it long ago because It is 2020 and nothing goes as planned. Hope this post gives some perspective on the state of Svelte and Sapper in 2020.

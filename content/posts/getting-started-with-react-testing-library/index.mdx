@@ -1,0 +1,173 @@
+---
+title: Getting started with React Testing Library  🐐
+date: "2020-02-23"
+description: React testing library by Kent C Dodds is fairly new and since it is now a default with create-react-app, It makes a major case for writing tests using It. This blog post is an introduction of React Testing Library and how to get started writing unit tests using It.
+hero: /content/posts/getting-started-with-react-testing-library/hero.png
+category: React
+---
+
+Writing unit tests for the code is pretty much a regulation requirement nowadays, and UI developers are no more to be exempted. While UI tests might seem trivial at first, they serve a great role in big, complex projects with rich user interfaces. As a UI developer, user experience is at the heart and soul of the code you write and tests are the best way to ensure, you deliver that great experience.
+
+In this blog post, I'd like to share my learnings around [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) and how to get started with writing unit tests with It.
+
+### 😓 Writing Maintainable Tests is Hard
+
+Well, the problem is that writing tests that go the distance and are maintainable over time as project changes is hard. To achieve maintainability with test cases, you want to avoid including implementation details of components because that will obviously face rounds of refactoring over time. Tests are meant to give us confidence, and getting caught up in updating code and tests side by side every time you make a small refactor can be exhausting.
+
+### 🐐 Enter - React Testing Library
+
+React testing library by Kent C Dodds aims to solve these issues with writing maintainable tests. React testing library is a very light-weight solution for testing React components. It provides light utility functions on top of `react-dom` and `react-dom/test-utils`, in a way that encourages better testing practices. Its primary guiding principle is:
+
+> The more your tests resemble the way your software is used, the more confidence they can give you.
+
+So rather than dealing with instances of rendered React components, and checking if state is getting updated properly or props being passed are okay, which we can do with Enzyme by the way, instead our tests will work with actual DOM nodes. The utilities this library provides facilitate querying the DOM in the same way the user would. Finding elements by their label text (just like a user would), finding links and buttons from their text (like a user would).
+
+You can also find elements in DOM by giving them a `data-testid` prop as an “escape hatch” for elements where the text content and label do not make sense or is not practical.
+
+React Testing Library encourages our applications to be more accessible and allows us to get our tests closer to the way the users will use them.
+
+This library is a replacement for [Enzyme](http://airbnb.io/enzyme/) . While you _can_ follow these guidelines using Enzyme itself, enforcing this is harder because of all the amazing tools and utilities that Enzyme provides.
+
+### 🚦 Unit Testing Steps
+
+Unit tests more or less are a 3 step process -
+
+- **Arrange** - where we arrange/render your components.
+- **Act** - where we simulate actions on rendered components.
+- **Assert** - Where we assert our evaluations for expected results.
+
+### 👨🏻‍💻 Writing Tests with React Testing Library
+
+Now that we are done with discussing unit testing in general, associated problems and how React Testing Library aims to solve these problems, It is imperative to write some tests using it to get a better understanding.
+
+TLDR;
+You can find the example code sandbox [here](https://codesandbox.io/s/dreamy-hoover-mnzim?fontsize=14&hidenavigation=1&theme=dark).
+
+In our example, we'll write tests for a very basic, custom select component I wrote for this post.
+
+#### Setup
+
+We begin writing our unit tests by importing react and then importing the required utilities from `"@testing-library/react"` in second line by using:
+
+```jsx
+import { render, fireEvent, cleanup, wait } from "@testing-library/react";
+```
+
+Further, we import the component we want to test, in this case the `Select` component. In testing world, a group of related test cases is called a suite. We'll place all our tests in a test suite as well, which can be created using `describe`.
+
+```jsx
+describe("Test Suite Description", () => {
+  ...individual test cases
+})
+```
+
+Now that we've imported everything we need, and we've also created our empty test suite, let's get ahead with writing some test cases. We'll start simple by testing if our component renders correctly.
+
+#### Test 1: If our component renders correctly.
+
+So we start basic by testing if our `Select` component renders correctly given the proper props. We write a unit test case, using `test` function as -
+
+```jsx
+test("test description", () => {...test code})
+```
+
+Here's the code for the test -
+
+```jsx
+test("if component renders without crashing", () => {
+  const { getByText, getByAltText } = render(<Select options={options} />);
+  const controlElement = getByText("Select");
+  const dropdownIndicator = getByAltText("dropdown indicator down");
+  expect(controlElement).toBeInTheDocument();
+  expect(dropdownIndicator).toBeInTheDocument();
+});
+```
+
+Here, in first line we render the component to be tested which is the `Select` component using `render` function from `react-testing-library` we imported earlier. We pass the mock options we have defined earlier as props to `Select`. `render` returns an object with a whole bunch of functions and objects, which can be used to query the rendered component. In this case, we'll destructure to get `getByText` which queries the DOM by text value, and `getbyAltText` which queries the DOM for elements with provided alt text attribute. We'll now employ `getByText` to get the control element of the `Select` which has a default placeholder text of "Select" if nothing is selected. Querying for the default "Select" string should return us the control element. Next up, we'll use the `getByAltText` to get the indicator img element which has an alt text based on the state of `Select` component. since initially, the dropdown is closed it should be `dropdown indicator down`. Finally we assert that both the `controlElement` and `dropdownIndicator` as queried above are in the document, using expect function provided by Jest. That's sufficient to test if this component renders correctly.
+
+You can run the tests, using `yarn test` or `npm run test` depending on your usage and if all is right, your tests should pass ✅.
+In case of failure Jest is nice enough to highlight quite clearly what went wrong, you can use this to debug your tests.
+
+#### Test 2: If menu shows up on clicking the select control.
+
+```jsx
+test("If menu shows up on clicking the select control", () => {
+  // click on control element
+  const { getByRole } = render(<Select options={options} />);
+  const controlElement = getByRole("button");
+  fireEvent.click(controlElement);
+  // query for menu list on the DOM
+  const menuList = getByRole("menu-list");
+  const dropdownIndicator = getByRole("img");
+  expect(dropdownIndicator).toHaveAttribute("alt", "dropdown indicator up");
+  expect(menuList).toBeInTheDocument();
+  // click again to close the menu list
+  fireEvent.click(controlElement);
+  expect(dropdownIndicator).toHaveAttribute("alt", "dropdown indicator down");
+  expect(menuList).not.toBeInTheDocument();
+});
+```
+
+In this second test case, we'd like to test if our menu list shows up, once control element is clicked. We'll proceed by rendering the `Select` component with options. We'll use `getByRole` query function to query for role `button` on the DOM, and using this control element, we'd like to fire a click event on it using `fireEvent` imported earlier from `react-testing-library`. As per spec, this click should trigger the menu list to show up on the DOM. To assert that, we'll again query DOM for role of "menu-list" which we gave to our menu list in code using the same `getByRole` query method. We'll also query the dropdown indicator element as done in the earlier test. Since we have arranged the elements now, It is time to assert, we begin by using `expect` again to assert that dropdown indicator element should have the alt attribute as "dropdown indicator up" since the dropdown is open and we expect our menu list element to be in the document since it is supposed to be visible on clicking control element once. This is enough, but we go on to fire one more click event on control element to verify if the menu list is closing properly as well. To assert that, we expect again after the click event for dropdown indicator to have the alt attribute as "dropdown indicator down" and menu list element to not be in the document. Simple enough, and expect makes the syntax for assertion quite comprehensible.
+
+Go ahead and run the tests using `yarn test` or `npm test` depending on your usage and If all is right, your tests should pass ✅.
+
+In case of failure Jest is nice enough to highlight quite clearly what went wrong, you can use this to debug your tests.
+
+#### Test 3: If options are getting rendered properly.
+
+```jsx
+test("if our options are rendered correctly", () => {
+  const { getByRole, getAllByRole } = render(<Select options={options} />);
+  const controlElement = getByRole("button");
+  fireEvent.click(controlElement);
+
+  const menuOptions = getAllByRole("option");
+  expect(menuOptions).toHaveLength(options.length);
+});
+```
+
+In this 3rd one, we are going to test if our options are getting rendered correctly in the menu list. For that, we'll begin by rendering the `Select` component using same old `render` method and pass it options as props. We'll destructure `getByRole` and `getAllByRole` from the object returned by render. We'll get our control element by querying for role "button" using `getByRole` query function. Then, to show up the menu list, we'll fire a click event using `fireEvent` as done in the previous test. Quite easy till here. Then we'll use `getAllByRole` to get all elements with role of `option` which we've given to our option elements in code. This will return an array of elements having role as `option`. Finally, we'll assert if the length of the array is same as the length of the options passed using `expect` and `toHaveLength`.
+
+You know how to run tests by now, so go ahead and run 'em. If everything is alright, all tests should pass and in case of failure, you'll get nice error messages which will help you debug your tests.
+
+#### Test 4: If the rendered options are correct.
+
+```jsx
+test("If the rendered options are correct", () => {
+  const { getByRole, getByText } = render(<Select options={options} />);
+  const controlElement = getByRole("button");
+  fireEvent.click(controlElement);
+  options.forEach(({ label, value }) => expect(getByText(label)).toBeVisible());
+});
+```
+
+Alright, we've written three test cases by now, and I hope you've got some understanding of how go about writing unit tests using `react-testing-library`. Let's continue writing our tests and in this one, we'll test if the rendered options are correct. By correctness, I mean, if what we pass as option is the thing being rendered in menu list. Again, we'll start by rendering the component using render and we'll destructure `getByRole` and `getByText` query functions from It. We'll employ `getByRole` to get the control element and using it we'll fire a click event using `fireEvent`. Fairly simple, we've done it before nothing new. Clicking the control element should render our menu list, which we've tested already in the previous tests. Now, we'll go ahead and test if the options in that menu list correspond to the options passed as props. We'll loop on the options array and for each option, we'll get an element from DOM having text as label string of the option and we'll expect it to be visible. Might seem a little complex, but is quite simple. We just want to query an element in DOM with text content as label of an option and that option should be visible. We'd like this to be tested for each of the options, hence the for each loop. You can run the tests again and see if they pass or fail.
+
+#### Test 5: If selecting an option is working.
+
+```jsx
+test("if selecting an option is working", () => {
+  const { getByRole, getByText } = render(<Select options={options} />);
+  const controlElement = getByRole("button");
+  fireEvent.click(controlElement);
+  fireEvent.click(getByText(options[1].label));
+  wait(() => expect(controlElement).toHaveTextContent(options[1].label));
+});
+```
+
+We've tested more or less everything about our Select component except one, which is if selecting an option works, which we are going to do in this final test. So once again, we are going to start by rendering the component using render function and from the returned object, we'd like to get `getByRole` and `getByText` query functions. We'll query and get hold of our control element using `getByRole`. To select an option, we need to open the menu list first, so we'll open the menu list by firing a click event on control element using `fireEvent`. Now since we have all the options visible, we'd like to test if clicking on the first one, selects it i.e sets it as the selected option reflected via text of control element. To do this, we'll fire another click event on the second option element queried from DOM using `getByText` on second options' label text. We know that under the hood, once we click the option, some state update is triggered and state updation is not synchronous in React, so we need to wait for state updation to occur before asserting. We can wait using `wait` function from `@testing-library/react` imported above.
+
+`wait` takes two arguments, first one is the function to be executed and second is optional configuration object. The default timeout is 4500ms for `wait` function, you can give your own timeout as part of optional configuration object. `wait` is a part of async utilities provided by `react-testing-library` which make testing asynchronous code really easy.
+
+Back to the test, we wait for control element to have text content same as the selected options label. We do this using `expect` and `toHaveTextContent` matcher.
+
+Now that we are done, you can run the tests again using `yarn test` or `npm run test` to see if your tests pass or fail. If you've followed correctly, all tests should pass.
+
+#### Running Tests In Isolation
+
+We want our tests to run in isolation, so that the effects of the previous test don't influence the current one. `react-testing-library` provides a function called `Cleanup` which as the name suggests cleans up the test and all the side effects created by that test. `Cleanup` is called after each test automatically by default if the testing framework you're using supports the afterEach global, or you can put it there yourself as shown using `afterEach` function from Jest, which runs after each test and expects a function as argument. We can pass our `Cleanup` function to `afterEach` so that after each test completes, `Cleanup` cleans it up, ensuring the next test is unaffected by the execution of previous one.
+
+### Closing Notes
+
+Alrighty, so that was a brisk introduction to writing unit tests with React Testing Library. I hope this post smoothens out the initial friction in picking up React Testing Library for unit testing React applications. For more, checkout the [Documentation](https://testing-library.com/docs/react-testing-library/intro) and do not forget to follow [Kent C Dodds](www.twitter.com/kentcdodds) on Twitter!

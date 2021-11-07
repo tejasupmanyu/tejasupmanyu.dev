@@ -1,0 +1,185 @@
+---
+title: "Javascript Modules: To hell and back. 🆘"
+date: "2020-05-24"
+description: What are Javascript modules, CommonJS, AMD, UMD .... and now ES6 modules.
+hero: /content/posts/javascript-modules-to-hell-and-back/hero.png
+category: Javascript
+---
+
+I’ll be publishing my learnings, opinions and thoughts (which are frequently wrong) around Javascript modules, my experiments with bundling Javascript with some major bundlers out there in upcoming posts, so I thought why not start from ground up - Javascript modules.
+
+So, Javascript modules. If you know about them, great! This post is not really a whole lot useful for you but for people who don’t, In this post I’ll try to make the module mountain easy to climb.
+
+Javascript started off and is called a scripting language meant for working in browsers (well, here we are now with the vision of everything-in-js) for single, one-off, isolated and simple tasks. Hence the `<script>` tags used to be quite succinct, but slowly as web apps started to get bigger and the inherent complexity started to skyrocket, so did the associated Javascript and the cost associated with fetching and parsing it. As the complexity and the size of scripts started to get out of hand, there was a need to _modularise_ javascript code.
+
+If you come from a computer science background or know something about the OOP (Object Oriented Principles), you must have heard about modularisation as a technique of reducing complexity in a system. In plain words, modularising is all about breaking your application code into smaller , more manageable pieces of code, which can be developed, tested , changed and maintained easily without a whole lot of dependencies involved (coupling, cohesion and a couple of other fancy terms). If you have resolved merge conflicts because of multiple people working on the same file in a codebase, deep down in the recesses of your heart, you know why modularisation and breaking code into smaller, manageable pieces is important.
+
+So It came to splitting javascript into multiple modules, which can be imported, exported and used when required. It wasn’t much of a problem in the initial days so, Javascript - at the language level didn’t have the required mechanisms in place to support modules. Since it was not part of the Javascript specification, The bright and ever-dedicated Javascript community came up with their own mechanisms and libraries for supporting modularisation in Javascript. By 2010, when Node.JS became a _thing_ and Javascript was finally getting out of the browser land, we had a proper module system in place called [commonJS](https://en.wikipedia.org/wiki/CommonJS) and others came in jumping as well -
+
+- [**CommonJS**](https://flaviocopes.com/commonjs/)
+  CommonJS is the most used module standard used and popularised mostly with the advent of NodeJS and the NPM package registry is built on top of mostly commonJS using packages. Since CommonJS was meant for Node, It was focused on modules running outside the browser environment.
+
+- [**AMD (Asynchronous Module Definition)**](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)
+  AMD is another ancient but popular module definition standard which had the feature of asynchronously loading modules and dependencies. AMD was suited for the browser and focused on performance. AMD was implemented by some popular libraries such as [RequireJS](https://requirejs.org)
+
+- [**UMD (Universal Module Definition)**](https://github.com/umdjs/umd)
+  As the gap between AMD and CommonJS started to widen, there was a need for a module definition to fill the gap and be interoperable in both browser land and NodeJS based environments. UMD aimed to solve this problem and become a universal module definition standard, compatible with CommonJS and AMD.
+
+The good news is that all of these module systems and libraries based on them are inching towards obsoletion, since Javascript or ECMAscript to be correct landed support for modules (called ES Modules, abbreviated as _esm_) as part of the language definition.
+
+## What is a Module? 📄
+
+A module is just a fancy term for an individual piece of separated Javascript code. A file with some Javascript is a module, a script tag (marked with `type = "module"`) is a module. We’ll talk about module scripts a bit later, for now a file with javascript code is a module is a simple, satisfactory definition for the term _module_.
+
+```html
+<script type="module">
+  // ...logic
+</script>
+```
+
+Code is modularised so that it can be invoked, called wherever required. So modules support special directives for loading other modules and making code inside a module import-able, known as `import` and `export` . If you’ve written some modern Javascript you’ve already seen these keywords and you know what they mean, don’t you? Still here’s a quick round up -
+
+- `export` keyword marks functions, variables and other entities that are meant to be accessible from outside the current module.
+- `import` lets you access and use ‘exported’ stuff from other modules
+
+`import` and `export` in conjunction make javascript land, so great, usable and maintainable. I said something about inline scripts above, let’s come back to that. Since in the end, your javascript is going to be inlined in your HTML with script tags, how does a browser differentiate ? Or how do you write "modules" inline? It is easy as pie, just add attribute `type` with value `module` to inline script tags to turn them into modules. Modules are treated differently than usual script tags, we’ll talk about it in a little while.
+
+## What is so special about a Module? 🍭
+
+Modules don’t seem to be all too special right now, do they? I agree but _It is the simple things that matter_ and here is a quick rundown of all the features of a module.
+
+- #### Module level Scope
+
+  Comes as quite obvious if you have been writing modern Javascript, modules have their own scope. By the definition of modules, variables and properties in a module are not visible to others, until explicitly marked with export and imported in other modules.
+
+- #### Only evaluated on first import
+
+  The code of the module is only evaluated once, and when it is imported for the first time. If the same module is imported at multiple places in your code, the code is only executed once and exported for use by other modules.
+
+  ```js
+  // fileA.js
+
+  console.log("Hello from module - fileA");
+  ```
+
+  ```js
+  // fileB.js
+
+  import "./fileA.js"; // logs "Hello from module - fileA"
+  import "./fileA.js"; // nothing in console.
+  ```
+
+- #### Default strict
+
+  Modules `use strict` by default, so all the strict javascript rules apply and will throw an error if not followed.
+
+- #### Modules don’t work with file imports
+  Modules don’t work with plain file exports, so using modules with file:// won’t work. Developing and using JS modules requires a local http server. If you use file imports, you’ll run in CORS issues due to Javascript module security requirements.
+
+## Browser loading characteristics 🪁
+
+### Module scripts are deferred
+
+Browsers treat module scripts a bit differently than regular scripts. _Module scripts are deferred_, by deferred I mean there is an implicit `defer` attribute on module scripts for both inline and external script tags.
+
+```html
+<script defer>
+  // fetched asynchronously if external.
+  // executed after HTML has parsed and domInteractive event has fired.
+</script>
+```
+
+Browsers can load scripts in many ways - async and defer are attributes used to control the fetching and parsing behaviour of scripts. That is a separate topic in itself and we’ll take a look at it in another blog post. If you are curious and can’t wait, here’s a nice [blog post](https://flaviocopes.com/javascript-async-defer/) explaining script loading in browsers.
+
+```html
+<script async>
+  // fetched asynchronously
+  // executed as soon as fetching is complete.
+  // parser blocking
+</script>
+```
+
+Coming back to module scripts, since they are deferred - It means that as browser encounters the module script, It asynchronously fetches it without blocking the HTML parser running on main thread. And once HTML parser is done, the fetched scripts (marked deferred) are executed in their relative order. This is great for most scripts which do not depend on DOM loading and improves perceived performance parameters like LCP (largest content-full paint) and FCP (first content-full paint).
+
+### Async module scripts
+
+If you specify both `async` and `defer` on a script, async takes precedence on modern browsers, while older browsers that support defer but not async will fallback to defer. This also affects module scripts with async attributes as we saw above module scripts are intrinsically deferred, applying async attribute makes them _parsing-blocking_. With async in a module script, the script dependencies are fetched asynchronously and executed right away instead of waiting for HTML parser to complete and `domInteractive` event to fire.
+
+### Compatibility with old browsers
+
+Oldie browsers, yet to support module scripts, just ignore them. Scripts with attribute `nomodule` can be provided as fallback as the modern browsers recognise both module and `nomodule` scripts and ignore the once marked `nomodule` but old browsers will execute such scripts.
+
+```html
+<script type="module">
+  // works as expected in modern browsers
+</script>
+
+<script nomodule>
+  // Modern browsers understand both type=module and nomodule, so ignore this
+  // Old browsers ignore script with unknown type=module, but execute this.
+</script>
+```
+
+## Enter: ES6 Modules 🚨
+
+Till now, we’ve laid the ground for what modules are, why they are so important and the popular module standards on the scene right now. But as I said, these module standards are becoming a thing of past since, Javascript inherently got support for modules as part of the language. Known as ES6 modules or ESM, this format for modules is a cut above the rest. Since modules are now part of the language, we can avoid a whole land of trivia, frustration and misery around module formats in different environments, be it browser or node or something else that lands tomorrow. So ES modules save us from that incredible burden while shipping code. Not only interoperability between environments, since ES6 are the part of the language, they also make code using them future proof.
+
+Now if you are thinking I wrote a long story just to tout the future-proof nature and interoperability provided by ES6 modules, wait there’s more than just that. (Though, I’d happily trade most material possessions for future proof code)
+
+## How ES6 modules are better ✅
+
+Well, now we have modules baked into the language, if that’s not enough to convince you, let me tell you ES6 modules are much better than existing ones in terms of -
+
+- #### **Syntax**
+
+  ES6 module syntax using `import` and `export` feels much compact and natural than existing implementations. CommonJS already offered a nice, compact syntax for module imports using `require()` . ES6 syntax just feels so semantic and easy to read. It’s not bulky, and It is definitely not weird like AMD.
+
+- #### **Support for Cyclical Dependencies**
+
+  Two modules A and B are [cyclically dependent](http://en.wikipedia.org/wiki/Circular_dependency) on each other if both A (possibly indirectly/transitively) imports B and B imports A. It is said that cyclical dependencies are a sign of bad design but I don’t agree to that viewpoint but they lead to A and B being _tightly coupled_ – they can only be used and evolved together. ES6 modules support cyclical dependencies while using modules without any weird hacks or tricks, required With AMD or CommonJS for that matter.
+
+- #### **Multiple exports, default and named exports**
+
+  One of the most hailed feature of ES6 modules is multiple exports and support for both default and named exports from a module which was not easily possible with CommonJS. CommonJS also supported allowed multiple exports but they were to nested in one common export, which troubled static analysers and made it very tough to remove unused code.
+
+- #### **Asynchronous Loading**
+
+  ES6 modules support both synchronous and asynchronous loading of modules (using dynamic import()) like AMD. Asynchronous loading enables a whole host of performance benefits specially on the web, where you don’t really need all modules at once, but incrementally as required. This is also referred to as Lazy loading of modules in some cases.
+
+- #### **Bindings not values**
+  ES6 modules export bindings, not values like CommonJS. What this means is that in CommonJS if you export a number and use it somewhere else by importing it, the importing module will only see the value of the number at the the time of import. Any changes to the value of exported number thereafter, will not be seen by the importing module because commonJS exports using _copy by value_ mechanism while that is not the case with ES6 modules which export bindings - essentially hooks the memory location of the imports, so that the importing module always sees the latest value.
+
+There’s a lot more in the finer points about ES6 modules, which you can read in this [great post by **Axel Rauschmayer**](https://2ality.com/2014/09/es6-modules-final.html)
+
+## The Current state of ES6 modules. 🌅
+
+At the time of this writing, the javascript world is still mostly CommonJS based and that isn’t good news in 2020. (Really, what is a good news in 2020?) If you use NPM packages, which chances are you definitely do, most of them are still CommonJS based. This is bad, because CommonJS isn’t really all too friendly with static analysers and build tools, which in turn makes some very important things like tree-shaking, almost ineffective in bundlers. Ineffective build tools often result in unoptimised bundles and that cost is bore by the users of your application.
+
+## How can I be on the good side? 😇
+
+Well, support ES6 modules, give them the love and support they so deserve! If you write libraries and packages use ES6 modules and give a module key in your package.json to point to the main file of your ES6 module alongside your UMD build files, so that the tools can take advantage of it.
+
+```json
+{
+  "name": "my-package",
+  "version": "0.1.0",
+  "main": "dist/my-package.umd.js",
+  "module": "dist/my-package.esm.js"
+}
+```
+
+I have started implementing this in the packages I have published and so should you. Other than that, to get out of this [module hell](https://medium.com/@trek/last-week-i-had-a-small-meltdown-on-twitter-about-npms-future-plans-around-front-end-packaging-b424dd8d367a), we need to actively support and consciously put effort towards making ES6 modules. One way you can do that is by sharing this post and making your dear friends and colleagues aware 😉
+
+<img
+  src="https://filmschoolrejects.com/wp-content/uploads/2018/12/SpongeBob_rainbow-e1543803672867-760x570.jpg"
+  alt="Spongebob squarepants Rainbow"
+  style={{ width: "100%" }}
+/>
+
+## References & Further Reading 🍿
+
+- [JavaScript modules - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [ECMAScript 6 modules: the final syntax](https://2ality.com/2014/09/es6-modules-final.html)
+- [Modules - JavaScript for impatient programmers](https://exploringjs.com/impatient-js/ch_modules.html)
+- [JavaScript Modules: Welcome to My Emo Hellscape](https://medium.com/@trek/last-week-i-had-a-small-meltdown-on-twitter-about-npms-future-plans-around-front-end-packaging-b424dd8d367a)
+- [ES modules: A cartoon deep-dive - Mozilla Hacks - the Web developer blog](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
