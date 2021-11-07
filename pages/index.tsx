@@ -79,7 +79,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
             borderRadius={{ base: "100%", lg: "xl" }}
             overflow="hidden"
           >
-            <Image src={avatar} alt="avatar" layout="fill" priority />
+            <Image src={avatar} alt="avatar" layout="fill" />
           </Box>
           <Box ml={{ lg: 4 }} mt={{ base: 2, lg: 0 }} width={{ lg: "70%" }}>
             <Flex
