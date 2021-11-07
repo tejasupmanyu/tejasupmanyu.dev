@@ -55,7 +55,7 @@ const socialHandles = [
 const Home: React.FC<HomeProps> = (props: HomeProps) => {
   const { featuredPosts, featuredTalks } = props;
   const isDark = useIsDarkMode();
-  const { fullName } = config.siteMetadata.author;
+  const { fullName, avatar } = config.siteMetadata.author;
   const subTextColor = useSubtextColor();
 
   return (
@@ -79,7 +79,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
             borderRadius={{ base: "100%", lg: "xl" }}
             overflow="hidden"
           >
-            <Image src={"/author.jpg"} alt="avatar" layout="fill" />
+            <Image src={avatar} alt="avatar" layout="fill" />
           </Box>
           <Box ml={{ lg: 4 }} mt={{ base: 2, lg: 0 }} width={{ lg: "70%" }}>
             <Flex

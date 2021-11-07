@@ -12,7 +12,7 @@ const config = {
       firstName: "Tejas",
       lastName: "Upmanyu",
       fullName: "Tejas Upmanyu",
-      avatar: "/author.jpg",
+      avatar: "/author.png",
     },
     social: {
       twitter: {
