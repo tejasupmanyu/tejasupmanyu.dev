@@ -2,7 +2,7 @@ import React from "react";
 
 import { Icon } from "@types";
 
-const RowsIcon: Icon = ({ fill, opacity }) => (
+const RowsIcon = ({ fill, opacity }) => (
   <svg
     width="26"
     height="26"

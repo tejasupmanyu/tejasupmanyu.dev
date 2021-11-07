@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const ToggleOpen: Icon = ({ fill }) => (
+const ToggleOpen = ({ fill }) => (
   <svg
     width="17"
     height="17"

@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const MailtoIcon: Icon = ({ fill = "white" }) => (
+const MailtoIcon = ({ fill = "white" }) => (
   <svg
     width="14"
     height="14"

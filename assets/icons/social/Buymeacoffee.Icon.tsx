@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const BuymeacoffeeIcon: Icon = ({ fill = "white" }) => (
+const BuymeacoffeeIcon = ({ fill = "white" }) => (
   <svg
     width="14"
     height="14"

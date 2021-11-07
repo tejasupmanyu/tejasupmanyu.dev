@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const FacebookIcon: Icon = ({ fill = "white" }) => (
+const FacebookIcon = ({ fill = "white" }) => (
   <svg
     width="7"
     height="14"

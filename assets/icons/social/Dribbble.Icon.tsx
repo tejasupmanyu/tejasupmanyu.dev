@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const DribbbleIcon: Icon = ({ fill = "white" }) => (
+const DribbbleIcon = ({ fill = "white" }) => (
   <svg
     width="14"
     height="14"

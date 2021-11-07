@@ -1,7 +1,6 @@
-import React from 'react';
-import { Icon } from '@types';
+import React from "react";
 
-const DevToIcon: Icon = ({ fill = "white" }) => (
+const DevToIcon = ({ fill = "white" }) => (
   <svg
     width="14"
     height="14"

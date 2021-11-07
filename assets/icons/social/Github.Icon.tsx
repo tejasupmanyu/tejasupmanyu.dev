@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Icon } from '@types';
-
-const GithubIcon: Icon = ({ fill = "white" }) => (
+const GithubIcon = ({ fill = "white" }) => (
   <svg
     width="14"
     height="14"
