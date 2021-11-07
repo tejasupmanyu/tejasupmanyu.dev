@@ -14,11 +14,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SunIcon, MoonIcon, LinkIcon } from "@chakra-ui/icons";
-import { useIsDarkMode } from "../../utils/hooks";
+import { useIsDarkMode, useSubtextColor } from "../../utils/hooks";
 
 export default function Footer() {
   const isDark = useIsDarkMode();
-  const subTextColor = isDark ? "subTextDark" : "subTextLight";
+  const subTextColor = useSubtextColor();
 
   return (
     <Box

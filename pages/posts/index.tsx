@@ -150,8 +150,7 @@ function PostTile(props: PostTileProps) {
     dirPath,
   } = props;
 
-  const isDark = useIsDarkMode();
-  const subTextColor = isDark ? "subTextDark" : "subTextLight";
+  const subTextColor = useSubtextColor();
 
   return (
     <Link href={`/posts/${dirPath}`} passHref>
@@ -181,7 +180,7 @@ function PostBottomBar(props: PostBottomBarProps) {
   const { date, ...rest } = props;
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  const subTextColor = isDark ? "subTextDark" : "subTextLight";
+  const subTextColor = useSubtextColor();
   return (
     <Flex
       pt={2}

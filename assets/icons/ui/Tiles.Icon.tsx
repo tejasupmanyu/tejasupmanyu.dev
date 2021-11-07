@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Icon } from "@types";
-
 const TilesIcon = ({ fill, opacity }) => (
   <svg
     width="26"

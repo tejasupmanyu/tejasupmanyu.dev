@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Icon } from "@types";
-
 const RowsIcon = ({ fill, opacity }) => (
   <svg
     width="26"

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Icons from "../../assets/icons";
-import { IconWrapper } from "./styles";
 import Head from "next/head";
 import config from "../../site.config";
 import {

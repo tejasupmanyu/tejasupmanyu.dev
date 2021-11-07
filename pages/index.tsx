@@ -14,7 +14,7 @@ import {
   Button,
   Link as ChakraLink,
 } from "@chakra-ui/react";
-import { IconWrapper } from "./styles";
+import { IconWrapper } from "../styles/commons";
 import { Card } from "../components/card";
 import Link from "next/link";
 import Image from "next/image";
@@ -56,7 +56,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
   const { featuredPosts, featuredTalks } = props;
   const isDark = useIsDarkMode();
   const { fullName, avatar } = config.siteMetadata.author;
-  const subTextColor = isDark ? "subTextDark" : "subTextLight";
+  const subTextColor = useSubtextColor();
 
   return (
     <ContentContainer>
